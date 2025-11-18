@@ -1,0 +1,40 @@
+CREATE DATABASE SampleDb;
+GO
+
+USE SampleDb;
+GO
+
+CREATE TABLE Categories (
+    CategoryId INT IDENTITY(1,1) PRIMARY KEY,
+    CategoryName NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Products (
+    ProductId INT IDENTITY(1,1) PRIMARY KEY,
+    ProductName NVARCHAR(100) NOT NULL,
+    Price DECIMAL(10,2),
+    CategoryId INT FOREIGN KEY REFERENCES Categories(CategoryId)
+);
+
+CREATE TABLE Clients (
+    ClientId INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(100),
+    Document NVARCHAR(50),
+    Address NVARCHAR(100),
+    Phone NVARCHAR(50),
+    Email NVARCHAR(100)
+);
+
+CREATE TABLE Employees (
+    EmployeeId INT IDENTITY(1,1) PRIMARY KEY,
+    FirstName NVARCHAR(50) NOT NULL,
+    LastName NVARCHAR(50) NOT NULL,
+    Email NVARCHAR(100) NOT NULL,
+    Phone NVARCHAR(50) NULL,
+    HireDate DATE NULL
+);
+
+SELECT TOP 5 * FROM Categories;
+
+
+SELECT * FROM Clients

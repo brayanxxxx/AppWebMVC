@@ -1,0 +1,40 @@
+﻿@model WebAppProductsandCategories.Models.Employee
+
+@{
+    ViewData["Title"] = "Eliminar Empleado";
+}
+
+<h2>Eliminar Empleado</h2>
+
+<div class="alert alert-danger">
+    <p>¿Seguro que quieres eliminar este empleado?</p>
+</div>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Nombre</th>
+        <td>@Model.FirstName</td>
+    </tr>
+    <tr>
+        <th>Apellido</th>
+        <td>@Model.LastName</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>Teléfono</th>
+        <td>@Model.Phone</td>
+    </tr>
+    <tr>
+        <th>Fecha Contratación</th>
+        <td>@Model.HireDate?.ToString("yyyy-MM-dd")</td>
+    </tr>
+</table>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="EmployeeId" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

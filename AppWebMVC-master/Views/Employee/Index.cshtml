@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebAppProductsandCategories.Models.Employee>
+
+@{
+    ViewData["Title"] = "Empleados";
+}
+
+<h2>Empleados</h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Crear Nuevo Empleado</a>
+</p>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">@TempData["Mensaje"]</div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Fecha Contratación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+                <td>@item.HireDate?.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.EmployeeId">Detalles</a>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.EmployeeId">Editar</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.EmployeeId">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

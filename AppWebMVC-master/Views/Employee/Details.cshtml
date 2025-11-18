@@ -1,0 +1,32 @@
+﻿@model WebAppProductsandCategories.Models.Employee
+
+@{
+    ViewData["Title"] = "Detalles Empleado";
+}
+
+<h2>Detalles del Empleado</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Nombre</th>
+        <td>@Model.FirstName</td>
+    </tr>
+    <tr>
+        <th>Apellido</th>
+        <td>@Model.LastName</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>Teléfono</th>
+        <td>@Model.Phone</td>
+    </tr>
+    <tr>
+        <th>Fecha Contratación</th>
+        <td>@Model.HireDate?.ToString("yyyy-MM-dd")</td>
+    </tr>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">Volver</a>

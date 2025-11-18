@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebAppProductsandCategories.Models.Product>
+
+<h1>Products</h1>
+
+<a href="@Url.Action("Create")" class="btn btn-primary">Create New Product</a>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>ProductId</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductId</td>
+                <td>@product.Name</td>
+                <td>@product.Price.ToString("C")</td>
+                <td>@GetCategoryName(product.CategoryId)</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = product.ProductId })" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="@Url.Action("Delete", new { id = product.ProductId })" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@functions {
+    private string GetCategoryName(int categoryId)
+    {
+        var category = ViewBag.Categories as List<WebAppProductsandCategories.Models.Category>;
+        return category?.FirstOrDefault(c => c.CategoryId == categoryId)?.Name ?? "Unknown";
+    }
+}
